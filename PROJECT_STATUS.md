@@ -35,9 +35,11 @@
 - **Frontend:**
   - Selector de encuestas funcional.
   - Tabla DataTables dinámica con exportación a Excel completa (columnas ocultas incluidas).
+  - **Unificación con Edición:** Se implementó botón de Acción "Editar" en cada fila del reporte para modificar respuestas directamente desde la vista de informe.
+    - Soporte para edición de todos los tipos de pregunta (Texto, Opción Múltiple, Checkbox, Compuestas).
+    - Manejo de inputs "Otros".
 
 ## Tareas Pendientes / Próximos Pasos (Mañana)
 1. **Validación PQR:** Asegurar que el endpoint `/Contacto/enviar` en la API esté totalmente operativo para el formulario de la landing.
-2. **Módulo de Edición:** Funcionalidad para buscar y modificar respuestas existentes.
-3. **Módulo InfRegistro:** Implementación del segundo reporte mencionado en el menú.
+  - Reporte InfRegistro: Implementación del segundo reporte mencionado en el menú.
 

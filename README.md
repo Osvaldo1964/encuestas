@@ -12,7 +12,10 @@ Contiene el frontend y la lógica de negocio de la interfaz administrativa.
 - **Funcionalidades Clave:**
   - Login seguro.
   - Módulo de **Registro de Encuestas**: Formulario dinámico con validación estricta y soporte para preguntas compuestas.
-  - Módulo de **Informes (Infencuestas)**: Tablas dinámicas con pivoteo de datos para ver respuestas por columna y exportación a Excel.
+  - Módulo de **Informes (Infencuestas)**: 
+    - Tablas dinámicas con pivoteo de datos para ver respuestas por columna.
+    - Exportación a Excel y PDF.
+    - **Edición integrada:** Permite modificar las respuestas de los encuestados directamente desde el reporte.
 
 ### 2. API Backend (`api-encuestas`)
 Provee los endpoints para la comunicación de datos.
@@ -51,8 +54,11 @@ El estado actual del desarrollo y las tareas pendientes se detallan en el archiv
 
 ### Resumen de Estado (Enero 2026)
 - **Diseño:** Paleta de colores unificada (Viridian `#40826D`).
-- **Módulos Activos:** Login, Registro de Encuestas, Informe de Encuestas.
-- **En Desarrollo:** Módulo de Edición, Reporte InfRegistro.
+- **Módulos Activos:** 
+  - Login.
+  - Registro de Encuestas.
+  - Informe de Encuestas (con Edición Integrada).
+- **En Desarrollo:** Reporte InfRegistro.
 
 ## Contribución
 
