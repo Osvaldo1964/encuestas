@@ -58,6 +58,7 @@ El estado actual del desarrollo y las tareas pendientes se detallan en el archiv
   - Login.
   - Registro de Encuestas.
   - Informe de Encuestas (con Edición Integrada).
+  - Gráficos de Encuestas.
 - **En Desarrollo:** Reporte InfRegistro.
 
 ## Contribución

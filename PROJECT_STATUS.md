@@ -1,6 +1,6 @@
 # Estado del Proyecto - Sistema de Encuestas
 
-## Última Actualización: 02 de Enero de 2026 (Mañana)
+## Última Actualización: 03 de Enero de 2026 (Mañana)
 
 ### 1. Diseño y Estética (UI/UX)
 **Estado:** Actualizado a Paleta Viridian (`#40826D`).
@@ -38,8 +38,18 @@
   - **Unificación con Edición:** Se implementó botón de Acción "Editar" en cada fila del reporte para modificar respuestas directamente desde la vista de informe.
     - Soporte para edición de todos los tipos de pregunta (Texto, Opción Múltiple, Checkbox, Compuestas).
     - Manejo de inputs "Otros".
+### 5. Módulo de Gráficos (`Grafencuestas`)
+**Estado:** ¡Finalizado!
+- **Funcionalidad:**
+  - Visualización interactiva con Chart.js.
+  - Generación de gráficos de Barras (Vertical/Horizontal), Pastel, Donas, Área Polar y Líneas.
+  - Filtros dinámicos por Encuesta y Pregunta.
+  - Actualización reactiva al cambiar filtros.
+  - **Exportación:** Botones para Imprimir reporte sin UI y Exportar datos crudos a CSV.
 
 ## Tareas Pendientes / Próximos Pasos (Mañana)
 1. **Validación PQR:** Asegurar que el endpoint `/Contacto/enviar` en la API esté totalmente operativo para el formulario de la landing.
   - Reporte InfRegistro: Implementación del segundo reporte mencionado en el menú.
+  
+## Última Actualización: 03 de Enero de 2026 (Mañana)
 
