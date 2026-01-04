@@ -25,16 +25,22 @@
   - **Inputs Dinámicos:** Los campos "Otro" se habilitan/deshabilitan correctamente según la selección.
 
 ### 4. Módulo de Informes (`Infencuestas`)
-**Estado:** Funcional y Corregido.
-- **Migración de Datos:**
-  - Respuestas antiguas migradas y alineadas con la nueva estructura de preguntas.
-  - **Visualización:** Corrección de duplicados en celdas y formateo automático de respuestas JSON (preguntas compuestas) a texto legible.
+**Estado:** Funcional, Seguro y Completo.
+- **Acciones y Permisos:**
+  - Inyección de permisos (`r, w, u, d`) desde PHP hacia la vista JS.
+  - Botón **Editar**: Solo visible si el usuario tiene permiso de actualización (`u_permiso`).
+  - Botón **Eliminar**: Implementado y solo visible si tiene permiso de borrado (`d_permiso`).
+  - Validación de seguridad en Backend API para el endpoint de eliminación.
 - **Funcionalidad:**
-  - Selector de encuestas funcional.
-  - Tabla DataTables dinámica con exportación a Excel completa.
-  - Edición directa desde el reporte implementada.
+  - Migración de datos, filtros y exportación (Excel/PDF) testeados.
 
-### 5. Módulo de Gráficos (`Grafencuestas`)
+### 5. Auditoría y Refactorización Técnica (API & Core)
+**Estado:** ¡Optimizado!
+- **Estandarización API:** Todos los controladores nuevos (`Registro`, `Infencuestas`, `Grafencuestas`) unificados para usar el helper `jsonResponse()` (headers y estructura consistente).
+- **CORS Global:** Implementado manejo centralizado de peticiones PREFLIGHT (`OPTIONS`) en `Libraries/Core/Controllers.php`, solucionando problemas de CORS en toda la API por herencia.
+- **Sesiones:** Unificado el manejo de sesiones en Frontend usando `sessionUser()` helper.
+
+### 6. Módulo de Gráficos (`Grafencuestas`)
 **Estado:** ¡Finalizado!
 - **Funcionalidad:**
   - Visualización interactiva con Chart.js (Barras, Pastel, Donas, etc.).

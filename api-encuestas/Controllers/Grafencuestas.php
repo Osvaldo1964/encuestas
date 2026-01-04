@@ -10,29 +10,26 @@ class Grafencuestas extends Controllers
     {
         $arrData = $this->model->selectEncuestas();
         if (empty($arrData)) {
-            $arrResponse = array('status' => false, 'msg' => 'No hay encuestas activas.');
+            jsonResponse(array('status' => false, 'msg' => 'No hay encuestas activas.'), 200);
         } else {
-            $arrResponse = array('status' => true, 'data' => $arrData);
+            jsonResponse(array('status' => true, 'data' => $arrData), 200);
         }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
     public function getQuestions($idSurvey)
     {
         if (empty($idSurvey)) {
-            $arrResponse = array('status' => false, 'msg' => 'Datos inválidos.');
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            jsonResponse(array('status' => false, 'msg' => 'Datos inválidos.'), 200);
             die();
         }
 
         $arrData = $this->model->selectQuestions($idSurvey);
         if (empty($arrData)) {
-            $arrResponse = array('status' => false, 'msg' => 'No hay preguntas para esta encuesta.');
+            jsonResponse(array('status' => false, 'msg' => 'No hay preguntas para esta encuesta.'), 200);
         } else {
-            $arrResponse = array('status' => true, 'data' => $arrData);
+            jsonResponse(array('status' => true, 'data' => $arrData), 200);
         }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
@@ -43,8 +40,7 @@ class Grafencuestas extends Controllers
         $idQuestion = isset($arrParams[1]) ? $arrParams[1] : "";
 
         if (empty($idSurvey) || empty($idQuestion)) {
-            $arrResponse = array('status' => false, 'msg' => 'Datos inválidos.');
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            jsonResponse(array('status' => false, 'msg' => 'Datos inválidos.'), 200);
             die();
         }
 
@@ -63,18 +59,17 @@ class Grafencuestas extends Controllers
         }
 
         if (empty($arrData)) {
-            $arrResponse = array('status' => false, 'msg' => 'No hay respuestas registradas para esta pregunta.');
+            jsonResponse(array('status' => false, 'msg' => 'No hay respuestas registradas para esta pregunta.'), 200);
         } else {
-            $arrResponse = array(
+            jsonResponse(array(
                 'status' => true,
                 'data' => $arrData,
                 'chartData' => [
                     'labels' => $labels,
                     'counts' => $counts
                 ]
-            );
+            ), 200);
         }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

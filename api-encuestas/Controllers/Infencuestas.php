@@ -10,9 +10,9 @@ class Infencuestas extends Controllers
     {
         $arrData = $this->model->selectEncuestas();
         if (empty($arrData)) {
-            echo json_encode(array('status' => false, 'msg' => 'No hay encuestas disponibles.'));
+            jsonResponse(array('status' => false, 'msg' => 'No hay encuestas disponibles.'), 200);
         } else {
-            echo json_encode(array('status' => true, 'data' => $arrData));
+            jsonResponse(array('status' => true, 'data' => $arrData), 200);
         }
         die();
     }
@@ -28,7 +28,7 @@ class Infencuestas extends Controllers
             $arrAnswers = $this->model->selectRespuestas($idSurvey);
 
             if (empty($arrQuestions) || empty($arrAnswers)) {
-                echo json_encode(array('status' => false, 'msg' => 'No hay datos para esta encuesta.'));
+                jsonResponse(array('status' => false, 'msg' => 'No hay datos para esta encuesta.'), 200);
                 die();
             }
 
@@ -128,9 +128,9 @@ class Infencuestas extends Controllers
                 'data' => $rows
             );
 
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            jsonResponse($arrResponse, 200);
         } else {
-            echo json_encode(array('status' => false, 'msg' => 'ID Encuesta inválido.'));
+            jsonResponse(array('status' => false, 'msg' => 'ID Encuesta inválido.'), 200);
         }
         die();
     }
@@ -238,6 +238,29 @@ class Infencuestas extends Controllers
             }
 
             echo json_encode(array('status' => true, 'msg' => 'Datos actualizados correctamente.'));
+        }
+        die();
+    }
+    public function delRespuesta($params)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "DELETE" || $_SERVER['REQUEST_METHOD'] == "POST") {
+            $arrParams = explode(',', $params);
+            $idSurvey = isset($arrParams[0]) ? intval($arrParams[0]) : 0;
+            $sequence = isset($arrParams[1]) ? intval($arrParams[1]) : 0;
+
+            if ($idSurvey <= 0 || $sequence <= 0) {
+                jsonResponse(array('status' => false, 'msg' => 'Datos incorrectos.'), 200);
+                die();
+            }
+
+            $request = $this->model->deleteRespuestas($idSurvey, $sequence);
+            if ($request) {
+                jsonResponse(array('status' => true, 'msg' => 'Registro eliminado con éxito.'), 200);
+            } else {
+                jsonResponse(array('status' => false, 'msg' => 'Error al eliminar registro.'), 200);
+            }
+        } else {
+            jsonResponse(array('status' => false, 'msg' => 'Método no permitido.'), 405);
         }
         die();
     }

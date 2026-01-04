@@ -1,4 +1,7 @@
 <?php headerAdmin($data); ?>
+<script>
+    const permisosMod = <?= json_encode($_SESSION['permisosMod']); ?>;
+</script>
 <main class="app-content">
     <div class="app-title">
         <div>

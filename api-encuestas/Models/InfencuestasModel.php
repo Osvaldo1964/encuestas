@@ -93,4 +93,13 @@ class InfencuestasModel extends Mysql
         $request = $this->insert($sql, $arrData);
         return $request;
     }
+    // Delete all answers for a specific person/sequence in a survey
+    public function deleteRespuestas(int $idSurvey, int $sequence)
+    {
+        // Using prepared statements
+        $sql = "DELETE FROM answers WHERE id_hsurvey_answer = ? AND sequence_answer = ?";
+        $arrData = array($idSurvey, $sequence);
+        $request = $this->delete($sql, $arrData);
+        return $request;
+    }
 }

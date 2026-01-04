@@ -15,7 +15,10 @@ Contiene el frontend y la lógica de negocio de la interfaz administrativa.
   - Módulo de **Informes (Infencuestas)**: 
     - Tablas dinámicas con pivoteo de datos para ver respuestas por columna.
     - Exportación a Excel y PDF.
-    - **Edición integrada:** Permite modificar las respuestas de los encuestados directamente desde el reporte.
+    - **Gestión Completa:** Edición y Eliminación de respuestas integradas, con validación de permisos por rol.
+  - Módulo de **Gráficos (Grafencuestas)**:
+    - Tablero visual interactivo con Chart.js.
+    - Filtros por encuesta y pregunta.
 
 ### 2. API Backend (`api-encuestas`)
 Provee los endpoints para la comunicación de datos.

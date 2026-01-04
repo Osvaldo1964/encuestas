@@ -6,6 +6,12 @@ class Controllers
     public $model;
     public function __construct()
     {
+        // Global CORS Handling for Preflight requests
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+            http_response_code(200);
+            die();
+        }
+
         $this->views = new Views();
         $this->loadModel();
     }
@@ -20,4 +26,3 @@ class Controllers
         }
     }
 }
-?>

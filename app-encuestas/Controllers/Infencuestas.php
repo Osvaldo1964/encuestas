@@ -4,12 +4,9 @@ class Infencuestas extends Controllers
     public function __construct()
     {
         parent::__construct();
-        session_start();
-        if (empty($_SESSION['login'])) {
-            header('Location: ' . base_url() . '/login');
-            die();
-        }
-        getPermisos(6); // Using generic ID or Reportes ID if exists. 
+        sessionUser();
+        // getPermisos(MDP_INFORMES) - assuming ID 6 based on previous code
+        getPermisos(7);
     }
 
     public function infencuestas()

@@ -11,9 +11,9 @@ class Registro extends Controllers
     {
         $arrData = $this->model->selectEncuestas();
         if (empty($arrData)) {
-            echo json_encode(array('status' => false, 'msg' => 'No hay encuestas activas disponibles.'), JSON_UNESCAPED_UNICODE);
+            jsonResponse(array('status' => false, 'msg' => 'No hay encuestas activas disponibles.'), 200);
         } else {
-            echo json_encode(array('status' => true, 'data' => $arrData), JSON_UNESCAPED_UNICODE);
+            jsonResponse(array('status' => true, 'data' => $arrData), 200);
         }
         die();
     }
@@ -82,7 +82,7 @@ class Registro extends Controllers
                     }
                 }
             }
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            jsonResponse($arrResponse, 200);
         }
         die();
     }

@@ -9,11 +9,7 @@ class Usuario extends Controllers
     {
         parent::__construct();
 
-        // 1. Manejo global de CORS Preflight (OPTIONS)
-        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-            http_response_code(200);
-            die();
-        }
+
 
         // 2. Identificar la ruta actual para excluir el login de la validación
         // Ajusta 'usuario/login' según tu sistema de rutas si es necesario
@@ -107,7 +103,6 @@ class Usuario extends Controllers
             } else {
                 jsonResponse(['status' => false, 'msg' => 'No es posible almacenar los datos.'], 200);
             }
-
         } catch (Exception $e) {
             jsonResponse(['status' => false, 'msg' => $e->getMessage()], 500);
         }

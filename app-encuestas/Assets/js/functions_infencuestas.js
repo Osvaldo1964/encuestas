@@ -63,14 +63,28 @@ async function fntViewReport() {
                 // If it's not in the visible columns, it might be in the full data object.
                 // We need to ensure the API returns the primary key ID for editing.
                 // Usually it's the first column or named specifically.
-                // Let's assume the first column data (index 0) is the ID or we use 'row.id_primary' if available.
                 // For now, let's look for a key that looks like an ID or use the row index as fallback (risky).
 
                 // Better approach: The API should ideally return 'id_primary' in the data object.
                 // Let's assume the API returns it. If not, we might need to adjust the API later.
                 let id = row.id_primary || row[0] || 0;
+                let btnEdit = '';
+                let btnDel = '';
 
-                return `<button class="btn btn-primary btn-sm btnEditEncuesta" onClick="fntEditEncuesta(${id}, ${idSurvey})" title="Editar"><i class="fas fa-pencil-alt"></i></button>`;
+                // Check permissions (assuming permisosMod is globally available via view injection)
+                if (typeof permisosMod !== 'undefined') {
+                    if (permisosMod.u_permiso == 1) {
+                        btnEdit = `<button class="btn btn-primary btn-sm btnEditEncuesta" onClick="fntEditEncuesta(${id}, ${idSurvey})" title="Editar"><i class="fas fa-pencil-alt"></i></button>`;
+                    }
+                    if (permisosMod.d_permiso == 1) {
+                        btnDel = `<button class="btn btn-danger btn-sm btnDelEncuesta" onClick="fntDelRespuesta(${id}, ${idSurvey})" title="Eliminar"><i class="fas fa-trash-alt"></i></button>`;
+                    }
+                } else {
+                    // Fallback if permissions not loaded (dev mode)
+                    btnEdit = `<button class="btn btn-primary btn-sm btnEditEncuesta" onClick="fntEditEncuesta(${id}, ${idSurvey})" title="Editar"><i class="fas fa-pencil-alt"></i></button>`;
+                }
+
+                return `<div class="text-center">${btnEdit} ${btnDel}</div>`;
             }
         });
 
@@ -395,6 +409,8 @@ document.addEventListener('change', function (e) {
             }
         }
     }
+
+
 });
 
 document.addEventListener('input', function (e) {
@@ -407,4 +423,29 @@ document.addEventListener('input', function (e) {
         }
     }
 });
+
+function fntDelRespuesta(sequence, idSurvey) {
+    swal({
+        title: "Eliminar Registro",
+        text: "¿Realmente quiere eliminar este registro?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar!",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    }, async function (isConfirm) {
+        if (isConfirm) {
+            // Using params in URL as configured in API
+            const url = `${BASE_URL_API}/Infencuestas/delRespuesta/${idSurvey},${sequence}`;
+            const objData = await fetchData(url, 'DELETE');
+
+            if (objData.status) {
+                swal("Eliminado!", objData.msg, "success");
+                fntViewReport(); // Refresh table
+            } else {
+                swal("Atención", objData.msg, "error");
+            }
+        }
+    });
+}
 
