@@ -72,14 +72,14 @@
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
                     <i class="app-menu__icon fa fa-bar-chart" aria-hidden="true"></i>
-                    <span class="app-menu__label">Informes</span>
+                    <span class="app-menu__label">Informes/Gráficos</span>
                     <i class="treeview-indicator fa fa-angle-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="<?= base_url(); ?>infencuestas"
                             style="padding-left: 40px;"><i class="icon fa fa-circle-o"></i> Informe Encuestas</a></li>
-                    <li><a class="treeview-item" href="<?= base_url(); ?>infregistro"
-                            style="padding-left: 40px;"><i class="icon fa fa-circle-o"></i> Informe Registro</a></li>
+                    <li><a class="treeview-item" href="<?= base_url(); ?>grafencuestas"
+                            style="padding-left: 40px;"><i class="icon fa fa-circle-o"></i> Gráficos de Encuestas</a></li>
                 </ul>
             </li>
         <?php } ?>

@@ -78,17 +78,42 @@ class Infencuestas extends Controllers
                 }
 
                 // Add Answer to current Row
-                // Handle concatenated answers (Multiple Checkbox or Compound)
                 $qKey = isset($qMap[$ans['id_bsurvey_answer']]) ? $qMap[$ans['id_bsurvey_answer']] : null;
 
                 if ($qKey) {
-                    $val = $ans['detail_answer'];
+                    $val = trim($ans['detail_answer']); // Trim to remove whitespace
 
-                    if (isset($tempRow[$qKey])) {
-                        // Append if already exists (Multi-choice or Compound parts)
-                        $tempRow[$qKey] .= " | " . $val;
-                    } else {
-                        $tempRow[$qKey] = $val;
+                    if ($val !== '') { // Only process if value is not empty
+                        // 1. JSON Formatting Logic
+                        // Check if value is a JSON string (starts with { and ends with })
+                        if (strpos($val, '{') === 0 && substr($val, -1) === '}') {
+                            $jsonObj = json_decode($val, true);
+                            if (json_last_error() === JSON_ERROR_NONE && is_array($jsonObj)) {
+                                $formattedParts = [];
+                                foreach ($jsonObj as $k => $v) {
+                                    // Skip empty values or technical placeholders if needed
+                                    if ($v !== "" && $v !== "-" && $v !== "null") {
+                                        // Human readable key: Capitalize first letter
+                                        $label = ucfirst($k);
+                                        $formattedParts[] = "$label: $v";
+                                    }
+                                }
+                                // Join with comma or newline. Comma is safer for Datatables default.
+                                $val = implode(", ", $formattedParts);
+                            }
+                        }
+
+                        // 2. Concatenation & Deduplication Logic
+                        if (isset($tempRow[$qKey]) && $tempRow[$qKey] !== '') {
+                            // Check if the value is already present to avoid duplicates (e.g. "Nombre | Nombre")
+                            // We explode existing content to check individual parts
+                            $existingParts = explode(" | ", $tempRow[$qKey]);
+                            if (!in_array($val, $existingParts)) {
+                                $tempRow[$qKey] .= " | " . $val;
+                            }
+                        } else {
+                            $tempRow[$qKey] = $val;
+                        }
                     }
                 }
             }

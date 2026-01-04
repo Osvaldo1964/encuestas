@@ -25,18 +25,21 @@ async function fntGetSurveys() {
 
 async function fntLoadForm() {
     const idSurvey = document.querySelector("#listSurveys").value;
+    const containerInfo = document.querySelector("#containerFormInfo"); // New container
     const container = document.querySelector("#containerForm");
     const divActions = document.querySelector("#divActions");
 
     if (idSurvey == "") {
+        containerInfo.style.display = "none"; // Hide entire card
         container.style.display = "none";
         divActions.style.display = "none";
         container.innerHTML = '<div class="text-center p-5"><i class="fas fa-spinner fa-spin"></i> Cargando formulario...</div>';
         return;
     }
 
+    containerInfo.style.display = "block"; // Show card
     container.style.display = "block";
-    divActions.style.display = "none"; // Hide until loaded
+    divActions.style.display = "none"; // Hide buttons until loaded
 
     // Reuse Encuestas API to get questions
     const objData = await fetchData(BASE_URL_API + '/Encuestas/getQuestions/' + idSurvey);
@@ -68,11 +71,11 @@ function generateQuestionHTML(q) {
 
     // Type 1: Texto Abierto
     if (qType == 1) {
-        inputHtml = `<input type="text" class="form-control question-input" data-id="${qId}" data-type="${qType}">`;
+        inputHtml = `<input type="text" class="form-control question-input form-control-sm survey-input-sm" data-id="${qId}" data-type="${qType}">`;
     }
     // Type 2: Fecha
     else if (qType == 2) {
-        inputHtml = `<input type="date" class="form-control question-input" data-id="${qId}" data-type="${qType}">`;
+        inputHtml = `<input type="date" class="form-control question-input form-control-sm survey-input-sm" data-id="${qId}" data-type="${qType}">`;
     }
     // Type 3: Seleccion Unica (Radio)
     else if (qType == 3) {
@@ -82,14 +85,12 @@ function generateQuestionHTML(q) {
                 let hasInput = (typeof opt === 'object') ? opt.has_input : false;
 
                 inputHtml += `
-                <div class="form-check">
+                <div class="form-check mb-1">
                     <input class="form-check-input question-input-radio" type="radio" name="radio_${qId}" id="radio_${qId}_${i}" value="${val}" data-id="${qId}" data-type="${qType}" data-hasinput="${hasInput}">
-                    <label class="form-check-label" for="radio_${qId}_${i}">${val}</label>
-                    ${hasInput ? `<input type="text" class="form-control form-control-sm d-inline-block ml-2 w-50 input-other" style="display:none;" placeholder="Especifique...">` : ''}
+                    <label class="form-check-label survey-option-label" for="radio_${qId}_${i}">${val}</label>
+                    ${hasInput ? `<input type="text" class="form-control form-control-sm d-inline-block ml-2 w-50 input-other survey-input-sm" style="display:none;" disabled placeholder="Especifique...">` : ''}
                 </div>`;
             });
-            // Listener for 'Others' input
-            // Handled globally or after render?
         }
     }
     // Type 4: Seleccion Multiple (Checkbox)
@@ -100,10 +101,10 @@ function generateQuestionHTML(q) {
                 let hasInput = (typeof opt === 'object') ? opt.has_input : false;
 
                 inputHtml += `
-                <div class="form-check">
+                <div class="form-check mb-1">
                     <input class="form-check-input question-input-check" type="checkbox" name="check_${qId}[]" id="check_${qId}_${i}" value="${val}" data-id="${qId}" data-type="${qType}" data-hasinput="${hasInput}">
-                    <label class="form-check-label" for="check_${qId}_${i}">${val}</label>
-                    ${hasInput ? `<input type="text" class="form-control form-control-sm d-inline-block ml-2 w-50 input-other" style="display:none;" placeholder="Especifique...">` : ''}
+                    <label class="form-check-label survey-option-label" for="check_${qId}_${i}">${val}</label>
+                    ${hasInput ? `<input type="text" class="form-control form-control-sm d-inline-block ml-2 w-50 input-other survey-input-sm" style="display:none;" disabled placeholder="Especifique...">` : ''}
                 </div>`;
             });
         }
@@ -115,9 +116,9 @@ function generateQuestionHTML(q) {
                 let val = (typeof opt === 'object') ? opt.nombre : opt;
                 inputHtml += `
                 <div class="form-group row mb-2">
-                    <label class="col-sm-1 col-form-label font-weight-bold" style="align-self: center;">${val}</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control question-input-compuesta" data-label="${val}" data-id="${qId}" data-type="${qType}">
+                    <label class="col-sm-4 col-md-3 col-form-label font-weight-bold survey-option-label" style="align-self: center;">${val}</label>
+                    <div class="col-sm-8 col-md-9">
+                        <input type="text" class="form-control form-control-sm question-input-compuesta survey-input-sm" data-label="${val}" data-id="${qId}" data-type="${qType}">
                     </div>
                 </div>`;
             });
@@ -125,11 +126,11 @@ function generateQuestionHTML(q) {
     }
 
     return `
-    <div class="card mb-4 shadow-sm question-card" data-id="${qId}" data-type="${qType}">
-        <div class="card-header bg-light">
-            <h5 class="mb-0 text-dark">${q.question_bsurvey}</h5>
+    <div class="card mb-3 shadow-sm question-card" data-id="${qId}" data-type="${qType}">
+        <div class="card-header bg-light py-2 survey-card-header">
+            <h6 class="mb-0 text-dark font-weight-bold">${q.question_bsurvey}</h6>
         </div>
-        <div class="card-body">
+        <div class="card-body py-3">
             ${inputHtml}
         </div>
     </div>`;
@@ -243,11 +244,58 @@ async function fntSaveAnswers() {
     formData.append("answers", JSON.stringify(answers));
 
     const objData = await fetchData(BASE_URL_API + '/Registro/saveRespuestas', 'POST', formData);
+
     if (objData.status) {
-        swal("Guardado", `${objData.msg}\n\nID Usuario: ${localStorage.getItem('idUser')}\nSecuencia: ${objData.sequence}`, "success");
-        fntResetForm();
+        swal({
+            title: "Guardado",
+            text: `${objData.msg}\n\nID Usuario: ${localStorage.getItem('idUser')}\nSecuencia: ${objData.sequence}`,
+            type: "success",
+            confirmButtonText: "Continuar",
+            closeOnConfirm: true
+        }, function (isConfirm) {
+            if (isConfirm) {
+                setTimeout(fntClearForm, 200);
+            }
+        });
     } else {
         swal("Error", objData.msg, "error");
+    }
+}
+
+// Function to clear answers but keep the form ready for next entry
+function fntClearForm() {
+    // 1. Clear all inputs
+    const inputs = document.querySelectorAll(".question-input, .question-input-compuesta, .input-other");
+    inputs.forEach(inp => {
+        inp.value = "";
+        inp.classList.remove("border-danger");
+    });
+
+    // 2. Uncheck radios and checkboxes
+    const checks = document.querySelectorAll(".question-input-radio, .question-input-check");
+    checks.forEach(chk => {
+        chk.checked = false;
+    });
+
+    // 3. Reset 'Other' inputs visibility and state
+    const otherInputs = document.querySelectorAll(".input-other");
+    otherInputs.forEach(inp => {
+        inp.style.display = "none";
+        inp.disabled = true;
+    });
+
+    // 4. Remove danger borders from cards
+    const cards = document.querySelectorAll(".question-card");
+    cards.forEach(card => card.classList.remove("border-danger"));
+
+    // 5. Focus on first input
+    const firstInput = document.querySelector(".question-input, .question-input-radio, .question-input-check");
+    if (firstInput) {
+        firstInput.focus();
+        // Scroll to top of form container smoothly
+        if (document.getElementById("containerFormInfo")) {
+            document.getElementById("containerFormInfo").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     }
 }
 
@@ -256,6 +304,9 @@ function fntResetForm() {
     document.querySelector("#containerForm").innerHTML = "";
     document.querySelector("#containerForm").style.display = "none";
     document.querySelector("#divActions").style.display = "none";
+
+    const containerInfo = document.querySelector("#containerFormInfo");
+    if (containerInfo) containerInfo.style.display = "none";
 }
 
 // Logic for "Other" input visibility (Event delegation)
@@ -270,6 +321,7 @@ document.addEventListener('change', function (e) {
             const inp = cont.querySelector('.input-other');
             if (inp) {
                 inp.style.display = 'none';
+                inp.disabled = true; // Disable
                 inp.value = '';
             }
         });
@@ -280,6 +332,7 @@ document.addEventListener('change', function (e) {
             const inp = cont.querySelector('.input-other');
             if (inp) {
                 inp.style.display = 'inline-block';
+                inp.disabled = false; // Enable
                 inp.focus();
             }
         }
@@ -293,9 +346,11 @@ document.addEventListener('change', function (e) {
             if (inp) {
                 if (e.target.checked) {
                     inp.style.display = 'inline-block';
+                    inp.disabled = false; // Enable
                     inp.focus();
                 } else {
                     inp.style.display = 'none';
+                    inp.disabled = true; // Disable
                     inp.value = '';
                 }
             }
