@@ -23,7 +23,7 @@ class Dashboard extends Controllers
         $data['page_id'] = 1;
         $data['page_tag'] = "Dashboard";
         $data['page_name'] = "dashboard";
-        $data['page_title'] = "Página principal - Sistema de votos";
+        $data['page_title'] = "Página principal - Sistema de encuestas";
         $data['usuario'] = $_SESSION['userData'];
         $data['page_functions_js'] = "functions_dashboard.js";
         $this->views->getView($this, "dashboard", $data);

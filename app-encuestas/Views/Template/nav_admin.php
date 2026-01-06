@@ -61,10 +61,6 @@
                         <li><a class="treeview-item" href="<?= base_url(); ?>registro"><i class="icon fa fa-circle-o"></i>
                                 Registro</a></li>
                     <?php } ?>
-                    <?php if (!empty($_SESSION['permisos'][7]['r_permiso'])) { ?>
-                        <li><a class="treeview-item" href="<?= base_url(); ?>edicion"><i class="icon fa fa-circle-o"></i>
-                                Edicion</a></li>
-                    <?php } ?>
                 </ul>
             </li>
         <?php } ?>
@@ -77,12 +73,12 @@
                 </a>
                 <ul class="treeview-menu">
                     <?php if (!empty($_SESSION['permisos'][7]['r_permiso'])) { ?>
-                        <li><a class="treeview-item" href="<?= base_url(); ?>infencuestas"
-                                style="padding-left: 40px;"><i class="icon fa fa-circle-o"></i> Informe Encuestas</a></li>
+                        <li><a class="treeview-item" href="<?= base_url(); ?>infencuestas" style="padding-left: 40px;"><i
+                                    class="icon fa fa-circle-o"></i> Informe Encuestas</a></li>
                     <?php } ?>
                     <?php if (!empty($_SESSION['permisos'][8]['r_permiso'])) { ?>
-                        <li><a class="treeview-item" href="<?= base_url(); ?>grafencuestas"
-                                style="padding-left: 40px;"><i class="icon fa fa-circle-o"></i> Gráficos de Encuestas</a></li>
+                        <li><a class="treeview-item" href="<?= base_url(); ?>grafencuestas" style="padding-left: 40px;"><i
+                                    class="icon fa fa-circle-o"></i> Gráficos de Encuestas</a></li>
                     <?php } ?>
                 </ul>
             </li>

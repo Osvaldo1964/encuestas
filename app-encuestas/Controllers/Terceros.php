@@ -22,7 +22,7 @@ class Terceros extends Controllers
     public function terceros()
     {
         $data['page_tag'] = "Terceros";
-        $data['page_title'] = "GESTIÓN DE TERCEROS <small>Sistema Electoral</small>";
+        $data['page_title'] = "GESTIÓN DE TERCEROS <small>Sistema Encuestas</small>";
         $data['page_name'] = "terceros";
         $data['page_functions_js'] = "functions_terceros.js";
         $this->views->getView($this, "terceros", $data);

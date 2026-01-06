@@ -13,7 +13,7 @@ class Login extends Controllers
 
 	public function login()
 	{
-		$data['page_tag'] = "Login - Sistema Electoral";
+		$data['page_tag'] = "Login - Sistema Encuestas";
 		$data['page_title'] = "Login";
 		$data['page_name'] = "login";
 		$data['page_functions_js'] = "functions_login.js";

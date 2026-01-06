@@ -21,7 +21,7 @@ class Encuestas extends Controllers
     public function encuestas()
     {
         $data['page_tag'] = "Encuestas";
-        $data['page_title'] = "GESTIÓN DE ENCUESTAS <small>Sistema Electoral</small>";
+        $data['page_title'] = "GESTIÓN DE ENCUESTAS <small>Sistema Encuestas</small>";
         $data['page_name'] = "encuestas";
         $data['page_functions_js'] = "functions_encuestas.js";
         $this->views->getView($this, "encuestas", $data);
