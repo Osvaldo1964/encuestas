@@ -1,6 +1,6 @@
 # Estado del Proyecto - Sistema de Encuestas
 
-## Última Actualización: 04 de Enero de 2026
+## Última Actualización: 07 de Enero de 2026
 
 ### 1. Diseño y Estética (UI/UX)
 **Estado:** Actualizado a Paleta Viridian (`#40826D`).
@@ -46,6 +46,17 @@
   - Visualización interactiva con Chart.js (Barras, Pastel, Donas, etc.).
   - Filtros dinámicos por Encuesta y Pregunta.
   - Exportación a CSV e Impresión de gráficos.
+
+### 7. Módulo Especiales (`Especiales`)
+**Estado:** ¡Completado y Refinado! (Enero 2026)
+- **Funcionalidad:**
+  - Gestión completa (CRUD) de la tabla `especiales`.
+  - **Formulario Inteligente:** 
+    - Todos los campos de texto libre convertidos a Selects controlados (Habitantes, Usos, Baños, etc.).
+    - Lógica JS para campos dependientes ("Otro", "Zonas Verdes -> Frente/Fondo").
+  - **UI/UX:** Diseño "Compacto" (font 0.75rem), Modal con scroll interno y botones centrados.
+  - **Base de Datos:** Optimización de tipos de datos (`INT` -> `VARCHAR`) y limpieza de inconsistencias (`RESID--`).
+  - **Seguridad:** Integrado con sistema de permisos (ID Módulo: 9).
 
 ## Tareas Pendientes / Próximos Pasos (Enero 2026)
 1. **Validación PQR:** Asegurar que el endpoint `/Contacto/enviar` en la API esté operativo.
