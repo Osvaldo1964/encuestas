@@ -19,13 +19,16 @@ class EspecialesModel extends Mysql
     private $strAlma;
     private $strTial;
     private $strDeal;
-    private $intLarg;
-    private $intAnch;
-    private $intAlto;
+    // Changed to string to support decimals
+    private $strLarg;
+    private $strAnch;
+    private $strAlto;
+    private $strTama;
+
     private $intPunt;
     private $strVivi;
     private $strDevi;
-    private $intTama;
+
     private $strCuar;
     private $strBani;
     private $strZona;
@@ -72,13 +75,13 @@ class EspecialesModel extends Mysql
         string $alma,
         string $tial,
         string $deal,
-        int $larg,
-        int $anch,
-        int $alto,
+        string $larg,
+        string $anch,
+        string $alto,
         int $punt,
         string $vivi,
         string $devi,
-        int $tama,
+        string $tama,
         string $cuar,
         string $bani,
         string $zona,
@@ -103,13 +106,13 @@ class EspecialesModel extends Mysql
         $this->strAlma = $alma;
         $this->strTial = $tial;
         $this->strDeal = $deal;
-        $this->intLarg = $larg;
-        $this->intAnch = $anch;
-        $this->intAlto = $alto;
+        $this->strLarg = $larg;
+        $this->strAnch = $anch;
+        $this->strAlto = $alto;
         $this->intPunt = $punt;
         $this->strVivi = $vivi;
         $this->strDevi = $devi;
-        $this->intTama = $tama;
+        $this->strTama = $tama;
         $this->strCuar = $cuar;
         $this->strBani = $bani;
         $this->strZona = $zona;
@@ -152,13 +155,13 @@ class EspecialesModel extends Mysql
                 $this->strAlma,
                 $this->strTial,
                 $this->strDeal,
-                $this->intLarg,
-                $this->intAnch,
-                $this->intAlto,
+                $this->strLarg,
+                $this->strAnch,
+                $this->strAlto,
                 $this->intPunt,
                 $this->strVivi,
                 $this->strDevi,
-                $this->intTama,
+                $this->strTama,
                 $this->strCuar,
                 $this->strBani,
                 $this->strZona,
@@ -194,13 +197,13 @@ class EspecialesModel extends Mysql
         string $alma,
         string $tial,
         string $deal,
-        int $larg,
-        int $anch,
-        int $alto,
+        string $larg,
+        string $anch,
+        string $alto,
         int $punt,
         string $vivi,
         string $devi,
-        int $tama,
+        string $tama,
         string $cuar,
         string $bani,
         string $zona,
@@ -226,13 +229,13 @@ class EspecialesModel extends Mysql
         $this->strAlma = $alma;
         $this->strTial = $tial;
         $this->strDeal = $deal;
-        $this->intLarg = $larg;
-        $this->intAnch = $anch;
-        $this->intAlto = $alto;
+        $this->strLarg = $larg;
+        $this->strAnch = $anch;
+        $this->strAlto = $alto;
         $this->intPunt = $punt;
         $this->strVivi = $vivi;
         $this->strDevi = $devi;
-        $this->intTama = $tama;
+        $this->strTama = $tama;
 
         $this->strCuar = $cuar;
         $this->strBani = $bani;
@@ -272,15 +275,15 @@ class EspecialesModel extends Mysql
                 $this->strAlma,
                 $this->strTial,
                 $this->strDeal,
-                $this->intLarg,
-                $this->intAnch,
-                $this->intAlto,
+                $this->strLarg,
+                $this->strAnch,
+                $this->strAlto,
                 $this->intPunt,
                 $this->strVivi,
                 $this->strDevi,
-                $this->intTama,
-                $this->intCuar,
-                $this->intBani,
+                $this->strTama,
+                $this->strCuar,
+                $this->strBani,
                 $this->strZona,
                 $this->intFren,
                 $this->intFond,

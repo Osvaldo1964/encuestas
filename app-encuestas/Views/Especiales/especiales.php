@@ -87,7 +87,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="txtSusc">Suscriptor</label>
-                                <textarea class="form-control" id="txtSusc" name="txtSusc" rows="2" required=""></textarea>
+                                <textarea class="form-control" id="txtSusc" name="txtSusc" rows="2"
+                                    required=""></textarea>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -139,7 +140,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txtFrec">Frecuencia</label>
-                                    <select class="form-control" id="txtFrec" name="txtFrec" onchange="fntFrecuencia(this.value)">
+                                    <select class="form-control" id="txtFrec" name="txtFrec"
+                                        onchange="fntFrecuencia(this.value)">
                                         <option value="">Seleccione...</option>
                                         <option value="DIARIA">DIARIA</option>
                                         <option value="2 DIAS A LA SEMANA">2 DIAS A LA SEMANA</option>
@@ -165,7 +167,8 @@
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="txtTial">Tipo Almacenamiento</label>
-                                    <select class="form-control" id="txtTial" name="txtTial" onchange="fntTipoAlmacenamiento(this.value)">
+                                    <select class="form-control" id="txtTial" name="txtTial"
+                                        onchange="fntTipoAlmacenamiento(this.value)">
                                         <option value="">Seleccione...</option>
                                         <option value="ALBERCA SUBTERRANEA">ALBERCA SUBTERRANEA</option>
                                         <option value="TANQUE ELEVADO">TANQUE ELEVADO</option>
@@ -180,15 +183,15 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="txtLarg">Largo</label>
-                                    <input type="number" class="form-control" id="txtLarg" name="txtLarg">
+                                    <input type="number" class="form-control" id="txtLarg" name="txtLarg" step="0.01">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="txtAnch">Ancho</label>
-                                    <input type="number" class="form-control" id="txtAnch" name="txtAnch">
+                                    <input type="number" class="form-control" id="txtAnch" name="txtAnch" step="0.01">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="txtAlto">Alto</label>
-                                    <input type="number" class="form-control" id="txtAlto" name="txtAlto">
+                                    <input type="number" class="form-control" id="txtAlto" name="txtAlto" step="0.01">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="txtPunt">Puntos Hidráulicos</label>
@@ -198,7 +201,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="txtVivi">Tipo Vivienda</label>
-                                    <select class="form-control" id="txtVivi" name="txtVivi" onchange="fntVivienda(this.value)">
+                                    <select class="form-control" id="txtVivi" name="txtVivi"
+                                        onchange="fntVivienda(this.value)">
                                         <option value="">Seleccione...</option>
                                         <option value="CASA UNIFAMILIAR">CASA UNIFAMILIAR</option>
                                         <option value="APARTAMENTO">APARTAMENTO</option>
@@ -221,7 +225,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="txtTama">Tamaño (m²)</label>
-                                    <input type="number" class="form-control" id="txtTama" name="txtTama">
+                                    <input type="number" class="form-control" id="txtTama" name="txtTama" step="0.01">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="txtCuar">Nro. Cuartos</label>
@@ -245,7 +249,8 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="txtZona">Tiene Zonas Verdes</label>
-                                    <select class="form-control" id="txtZona" name="txtZona" onchange="fntZonasVerdes(this.value)">
+                                    <select class="form-control" id="txtZona" name="txtZona"
+                                        onchange="fntZonasVerdes(this.value)">
                                         <option value="">Seleccione...</option>
                                         <option value="SI">SI</option>
                                         <option value="NO">NO</option>
@@ -286,8 +291,11 @@
             </div>
 
             <div class="tile-footer text-center p-3">
-                <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
+                <button id="btnActionForm" class="btn btn-primary" type="submit"><i
+                        class="fa fa-fw fa-lg fa-check-circle"></i><span
+                        id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger" type="button" data-dismiss="modal"><i
+                        class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
             </div>
             </form>
         </div>

@@ -69,13 +69,17 @@ class Especiales extends Controllers
                 $strAlma = strClean($_POST['txtAlma']);
                 $strTial = strClean($_POST['txtTial']);
                 $strDeal = strClean($_POST['txtDeal']);
-                $intLarg = intval($_POST['txtLarg']);
-                $intAnch = intval($_POST['txtAnch']);
-                $intAlto = intval($_POST['txtAlto']);
+
+                // Fields modified to support decimals (string format for SQL)
+                $strLarg = $_POST['txtLarg'];
+                $strAnch = $_POST['txtAnch'];
+                $strAlto = $_POST['txtAlto'];
+                $strTama = $_POST['txtTama'];
+
                 $intPunt = intval($_POST['txtPunt']);
                 $strVivi = strClean($_POST['txtVivi']);
                 $strDevi = strClean($_POST['txtDevi']);
-                $intTama = intval($_POST['txtTama']);
+
                 $strCuar = strClean($_POST['txtCuar']);
                 $strBani = strClean($_POST['txtBani']);
                 $strZona = strClean($_POST['txtZona']);
@@ -102,13 +106,13 @@ class Especiales extends Controllers
                         $strAlma,
                         $strTial,
                         $strDeal,
-                        $intLarg,
-                        $intAnch,
-                        $intAlto,
+                        $strLarg,
+                        $strAnch,
+                        $strAlto,
                         $intPunt,
                         $strVivi,
                         $strDevi,
-                        $intTama,
+                        $strTama,
                         $strCuar,
                         $strBani,
                         $strZona,
@@ -137,13 +141,13 @@ class Especiales extends Controllers
                         $strAlma,
                         $strTial,
                         $strDeal,
-                        $intLarg,
-                        $intAnch,
-                        $intAlto,
+                        $strLarg,
+                        $strAnch,
+                        $strAlto,
                         $intPunt,
                         $strVivi,
                         $strDevi,
-                        $intTama,
+                        $strTama,
                         $strCuar,
                         $strBani,
                         $strZona,
