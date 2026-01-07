@@ -114,7 +114,7 @@ async function fntEditEspecial(idEspecial) {
 
 function fntFrecuencia(value) {
     let txtDefr = document.querySelector("#txtDefr");
-    if (value == "otro") {
+    if (value == "OTRO") {
         txtDefr.disabled = false;
         txtDefr.required = true;
     } else {

@@ -1,110 +1,164 @@
 <?php
-
-// Configuración de Base de Datos
+// DB Config
 $host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "db-encuestas";
+$db_name = "db-encuestas";
+$username = "root";
+$password = "";
+$charset = "utf8";
 
-$mysqli = new mysqli($host, $user, $pass, $db);
-
-if ($mysqli->connect_errno) {
-    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-    exit();
+try {
+    $dsn = "mysql:host=$host;dbname=$db_name;charset=$charset";
+    $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+    $pdo = new PDO($dsn, $username, $password, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int) $e->getCode());
 }
 
-$mysqli->set_charset("utf8");
+// 1. Truncate table
+echo "Truncating table 'especiales'...\n";
+$pdo->exec("TRUNCATE TABLE especiales");
+echo "Table truncated.\n";
 
-// Archivo CSV
-$csvFile = 'datos_especiales.csv';
-
+// 2. Open CSV
+$csvFile = 'CARGA.csv';
 if (!file_exists($csvFile)) {
-    die("El archivo $csvFile no existe.");
+    die("Error: File $csvFile not found.\n");
 }
 
-$fp = fopen($csvFile, 'r');
+$handle = fopen($csvFile, "r");
+if ($handle === FALSE) {
+    die("Error opening file.\n");
+}
 
-// Descartar encabezado
-fgetcsv($fp, 1000, ";");
+// Get Header to map (Optional, but good for verification if we wanted dynamic)
+$header = fgetcsv($handle, 1000, ";");
+// We assume fixed structure based on inspection:
+// sec;matricula;suscriptor;medidor;barrio;direccion;Latitude;Longitude;clas_nombre;tele;email;habi;frec;defr;alma;tial;deal;larg;anch;alto;punt;vivi;devi;tama;cuar;bani;zona;fren;fond;usos;inst;estado
 
+$sql = "INSERT INTO especiales (
+    matr_especial, susc_especial, medi_especial, barr_especial, dire_especial, 
+    lati_especial, long_especial, estr_especial, tele_especial, email_especial, 
+    habi_especial, frec_especial, defr_especial, alma_especial, tial_especial, 
+    deal_especial, larg_especial, anch_especial, alto_especial, punt_especial, 
+    vivi_especial, devi_especial, tama_especial, cuar_especial, bani_especial, 
+    zona_especial, fren_especial, fond_especial, usos_especial, inst_especial, 
+    estado_especial
+) VALUES (
+    ?, ?, ?, ?, ?, 
+    ?, ?, ?, ?, ?, 
+    ?, ?, ?, ?, ?, 
+    ?, ?, ?, ?, ?, 
+    ?, ?, ?, ?, ?, 
+    ?, ?, ?, ?, ?, 
+    ?
+)";
+
+$stmt = $pdo->prepare($sql);
 $count = 0;
-$success = 0;
-$errors = 0;
+// Wrap in transaction for speed
+$pdo->beginTransaction();
 
-echo "Iniciando importación...\n";
+try {
+    while (($data = fgetcsv($handle, 2000, ";")) !== FALSE) {
+        // Expected 32 columns in CSV based on visual inspection of header
+        // Mapping:
+        // index 0: sec (SKIP)
+        // index 1: matricula
+        // ...
 
-while (($data = fgetcsv($fp, 1000, ";")) !== FALSE) {
-    // Mapeo de columnas según el orden del CSV
-    // CSV: sec;matricula;suscriptor;medidor;barrio;direccion;Latitude;Longitude;clas_nombre;tele;email;habi;frec;defr;alma;tial;deal;larg;anch;alto;punt;vivi;devi;tama;cuar;bani;zona;fren;fond;usos;inst;estado
+        /* 
+        Structure:
+        0: sec
+        1: matricula -> matr_especial
+        2: suscriptor -> susc_especial
+        3: medidor -> medi_especial
+        4: barrio -> barr_especial
+        5: direccion -> dire_especial
+        6: Latitude -> lati_especial
+        7: Longitude -> long_especial
+        8: clas_nombre -> estr_especial
+        9: tele -> tele_especial
+        10: email -> email_especial
+        11: habi -> habi_especial
+        12: frec -> frec_especial
+        13: defr -> defr_especial
+        14: alma -> alma_especial
+        15: tial -> tial_especial
+        16: deal -> deal_especial
+        17: larg -> larg_especial
+        18: anch -> anch_especial
+        19: alto -> alto_especial
+        20: punt -> punt_especial
+        21: vivi -> vivi_especial
+        22: devi -> devi_especial
+        23: tama -> tama_especial
+        24: cuar -> cuar_especial
+        25: bani -> bani_especial
+        26: zona -> zona_especial
+        27: fren -> fren_especial
+        28: fond -> fond_especial
+        29: usos -> usos_especial
+        30: inst -> inst_especial
+        31: estado -> estado_especial
+        */
 
-    // Validar integridad básica 
-    if (count($data) < 32) {
-        $errors++;
-        continue; // Faltan columnas
+        // Simple validation or casting if needed
+        $rowData = [
+            $data[1], // matr
+            $data[2], // susc
+            $data[3], // medi
+            $data[4], // barr
+            $data[5], // dire
+            $data[6], // lati
+            $data[7], // long
+            $data[8], // estr
+            $data[9], // tele
+            $data[10], // email
+            $data[11], // habi
+            $data[12], // frec
+            $data[13], // defr
+            $data[14], // alma
+            $data[15], // tial
+            $data[16], // deal
+            $data[17], // larg
+            $data[18], // anch
+            $data[19], // alto
+            $data[20], // punt
+            $data[21], // vivi
+            $data[22], // devi
+            $data[23], // tama
+            $data[24], // cuar
+            $data[25], // bani
+            $data[26], // zona
+            $data[27], // fren
+            $data[28], // fond
+            $data[29], // usos
+            $data[30], // inst
+            $data[31]  // estado
+        ];
+
+        // Ensure we pass nulls for empty strings if the DB expects it? 
+        // For now, passing empty strings as is, consistent with CSV.
+
+        $stmt->execute($rowData);
+        $count++;
+
+        if ($count % 500 == 0) {
+            echo "Imported $count rows...\n";
+        }
     }
 
-    $matr = $mysqli->real_escape_string($data[1]);
-    $susc = $mysqli->real_escape_string($data[2]);
-    $medi = $mysqli->real_escape_string($data[3]);
-    $barr = $mysqli->real_escape_string($data[4]);
-    $dire = $mysqli->real_escape_string($data[5]);
-    $lati = $mysqli->real_escape_string($data[6]);
-    $long = $mysqli->real_escape_string($data[7]);
-    $estr = $mysqli->real_escape_string($data[8]);
-    $tele = $mysqli->real_escape_string($data[9]);
-    $email = $mysqli->real_escape_string($data[10]);
-    $habi = (int)$data[11];
-    $frec = $mysqli->real_escape_string($data[12]);
-    $defr = $mysqli->real_escape_string($data[13]);
-    $alma = $mysqli->real_escape_string($data[14]);
-    $tial = $mysqli->real_escape_string($data[15]);
-    $deal = $mysqli->real_escape_string($data[16]);
-    $larg = (int)$data[17];
-    $anch = (int)$data[18];
-    $alto = (int)$data[19];
-    $punt = (int)$data[20];
-    $vivi = $mysqli->real_escape_string($data[21]);
-    $devi = $mysqli->real_escape_string($data[22]);
-    $tama = (int)$data[23];
-    $cuar = (int)$data[24]; // Assuming these are integers
-    $bani = (int)$data[25];
-    $zona = $mysqli->real_escape_string($data[26]);
-    $fren = (int)$data[27];
-    $fond = (int)$data[28];
-    $usos = $mysqli->real_escape_string($data[29]);
-    $inst = $mysqli->real_escape_string($data[30]);
-    $estado = (int)$data[31];
+    $pdo->commit();
+    echo "Done! Total imported: $count records.\n";
 
-    $sql = "INSERT INTO especiales (
-        matr_especial, susc_especial, medi_especial, barr_especial, dire_especial, 
-        lati_especial, long_especial, estr_especial, tele_especial, email_especial, 
-        habi_especial, frec_especial, defr_especial, alma_especial, tial_especial, 
-        deal_especial, larg_especial, anch_especial, alto_especial, punt_especial, 
-        vivi_especial, devi_especial, tama_especial, cuar_especial, bani_especial, 
-        zona_especial, fren_especial, fond_especial, usos_especial, inst_especial, 
-        estado_especial
-    ) VALUES (
-        '$matr', '$susc', '$medi', '$barr', '$dire', 
-        '$lati', '$long', '$estr', '$tele', '$email',
-        $habi, '$frec', '$defr', '$alma', '$tial',
-        '$deal', $larg, $anch, $alto, $punt,
-        '$vivi', '$devi', $tama, $cuar, $bani,
-        '$zona', $fren, $fond, '$usos', '$inst',
-        $estado
-    )";
-
-    if ($mysqli->query($sql) === TRUE) {
-        $success++;
-    } else {
-        echo "Error en fila $count: " . $mysqli->error . "\n";
-        $errors++;
-    }
-    $count++;
+} catch (Exception $e) {
+    $pdo->rollBack();
+    echo "Failed: " . $e->getMessage() . "\n";
 }
 
-fclose($fp);
-$mysqli->close();
-
-echo "Importación finalizada. \n";
-echo "Exitosos: $success \n";
-echo "Errores: $errors \n";
+fclose($handle);
+?>
