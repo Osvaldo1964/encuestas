@@ -40,7 +40,7 @@
         <!-- Aqui debo colocar los permisos de control electoral de todos los modulos -->
         <?php if (
             !empty($_SESSION['permisos'][4]['r_permiso']) || !empty($_SESSION['permisos'][5]['r_permiso'])
-            || !empty($_SESSION['permisos'][6]['r_permiso']) || !empty($_SESSION['permisos'][7]['r_permiso'])
+            || !empty($_SESSION['permisos'][6]['r_permiso']) || !empty($_SESSION['permisos'][9]['r_permiso'])
         ) { ?>
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
@@ -60,6 +60,10 @@
                     <?php if (!empty($_SESSION['permisos'][6]['r_permiso'])) { ?>
                         <li><a class="treeview-item" href="<?= base_url(); ?>registro"><i class="icon fa fa-circle-o"></i>
                                 Registro</a></li>
+                    <?php } ?>
+                    <?php if (!empty($_SESSION['permisos'][9]['r_permiso'])) { ?>
+                        <li><a class="treeview-item" href="<?= base_url(); ?>especiales"><i class="icon fa fa-circle-o"></i>
+                                Especiales</a></li>
                     <?php } ?>
                 </ul>
             </li>
