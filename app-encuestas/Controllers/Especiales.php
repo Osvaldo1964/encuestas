@@ -20,7 +20,7 @@ class Especiales extends Controllers
         $data['page_tag'] = "Especiales";
         $data['page_title'] = "GESTIÓN ESPECIALES <small>Sistema</small>";
         $data['page_name'] = "especiales";
-        $data['page_functions_js'] = "functions_especiales.js";
+        $data['page_functions_js'] = "functions_especiales.js?v=" . rand();
         $this->views->getView($this, "especiales", $data);
     }
 }

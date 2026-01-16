@@ -56,6 +56,7 @@
     - Lógica JS para campos dependientes ("Otro", "Zonas Verdes -> Frente/Fondo").
   - **UI/UX:** Diseño "Compacto" (font 0.75rem), Modal con scroll interno y botones centrados.
   - **Base de Datos:** Optimización de tipos de datos (`INT` -> `VARCHAR`) y limpieza de inconsistencias (`RESID--`).
+  - **Soporte Decimal:** Actualizados campos de dimensiones (Largo, Ancho, Alto, Tamaño) a `DECIMAL(8,2)` para permitir precisión.
   - **Seguridad:** Integrado con sistema de permisos (ID Módulo: 9).
 
 ## Tareas Pendientes / Próximos Pasos (Enero 2026)

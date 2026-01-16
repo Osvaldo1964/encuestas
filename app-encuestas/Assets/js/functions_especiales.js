@@ -16,7 +16,56 @@ document.addEventListener('DOMContentLoaded', function () {
             { "data": "dire_especial" },
             { "data": "barr_especial" },
             { "data": "estado_especial" },
+            { "data": "medi_especial", "visible": false },
+            { "data": "lati_especial", "visible": false },
+            { "data": "long_especial", "visible": false },
+            { "data": "estr_especial", "visible": false },
+            { "data": "tele_especial", "visible": false },
+            { "data": "email_especial", "visible": false },
+            { "data": "habi_especial", "visible": false },
+            { "data": "frec_especial", "visible": false },
+            { "data": "defr_especial", "visible": false },
+            { "data": "alma_especial", "visible": false },
+            { "data": "tial_especial", "visible": false },
+            { "data": "deal_especial", "visible": false },
+            { "data": "larg_especial", "visible": false },
+            { "data": "anch_especial", "visible": false },
+            { "data": "alto_especial", "visible": false },
+            { "data": "punt_especial", "visible": false },
+            { "data": "vivi_especial", "visible": false },
+            { "data": "devi_especial", "visible": false },
+            { "data": "tama_especial", "visible": false },
+            { "data": "cuar_especial", "visible": false },
+            { "data": "bani_especial", "visible": false },
+            { "data": "zona_especial", "visible": false },
+            { "data": "fren_especial", "visible": false },
+            { "data": "fond_especial", "visible": false },
+            { "data": "usos_especial", "visible": false },
+            { "data": "inst_especial", "visible": false },
             { "data": "options" }
+        ],
+        "dom": 'Bfrtip',
+        "buttons": [
+            {
+                "extend": "excelHtml5",
+                "text": "<i class='fas fa-file-excel'></i> Excel",
+                "titleAttr": "Exportar a Excel",
+                "className": "btn btn-success",
+                "exportOptions": {
+                    "columns": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+                }
+            },
+            {
+                "extend": "pdfHtml5",
+                "text": "<i class='fas fa-file-pdf'></i> PDF",
+                "titleAttr": "Exportar a PDF",
+                "className": "btn btn-danger",
+                "orientation": "landscape",
+                "pageSize": "LEGAL",
+                "exportOptions": {
+                    "columns": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+                }
+            }
         ],
         "responsive": true,
         "destroy": true,

@@ -23,6 +23,32 @@
                                     <th>Dirección</th>
                                     <th>Barrio</th>
                                     <th>Estado</th>
+                                    <th>Medidor</th>
+                                    <th>Latitud</th>
+                                    <th>Longitud</th>
+                                    <th>Estrato</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                    <th>Habitantes</th>
+                                    <th>Frecuencia</th>
+                                    <th>Otra Frec.</th>
+                                    <th>Almacenamiento</th>
+                                    <th>Tipo Almacenamiento</th>
+                                    <th>Otro Alc.</th>
+                                    <th>Largo</th>
+                                    <th>Ancho</th>
+                                    <th>Alto</th>
+                                    <th>Puntos</th>
+                                    <th>Vivienda</th>
+                                    <th>Otra Viv.</th>
+                                    <th>Tamaño</th>
+                                    <th>Cuartos</th>
+                                    <th>Baños</th>
+                                    <th>Zona Verde</th>
+                                    <th>Frente</th>
+                                    <th>Fondo</th>
+                                    <th>Usos</th>
+                                    <th>Instalar</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
