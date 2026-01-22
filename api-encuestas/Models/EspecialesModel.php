@@ -36,6 +36,8 @@ class EspecialesModel extends Mysql
     private $intFond;
     private $strUsos;
     private $strInst;
+    private $intDig;
+    private $strEfec;
     private $intEstado;
 
     public function __construct()
@@ -88,7 +90,9 @@ class EspecialesModel extends Mysql
         int $fren,
         int $fond,
         string $usos,
-        string $inst
+        string $inst,
+        int $dig,
+        string $efec
     ) {
         $this->strMatr = $matr;
         $this->strSusc = $susc;
@@ -120,6 +124,8 @@ class EspecialesModel extends Mysql
         $this->intFond = $fond;
         $this->strUsos = $usos;
         $this->strInst = $inst;
+        $this->intDig = $dig;
+        $this->strEfec = $efec;
         $this->intEstado = 1;
 
         $return = 0;
@@ -135,8 +141,8 @@ class EspecialesModel extends Mysql
                 deal_especial, larg_especial, anch_especial, alto_especial, punt_especial, 
                 vivi_especial, devi_especial, tama_especial, cuar_especial, bani_especial, 
                 zona_especial, fren_especial, fond_especial, usos_especial, inst_especial, 
-                estado_especial) 
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                dig_especial, efect_especial, estado_especial) 
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             $arrData = array(
                 $this->strMatr,
@@ -169,6 +175,8 @@ class EspecialesModel extends Mysql
                 $this->intFond,
                 $this->strUsos,
                 $this->strInst,
+                $this->intDig,
+                $this->strEfec,
                 $this->intEstado
             );
             $request_insert = $this->insert($query_insert, $arrData);
@@ -210,7 +218,9 @@ class EspecialesModel extends Mysql
         int $fren,
         int $fond,
         string $usos,
-        string $inst
+        string $inst,
+        int $dig,
+        string $efec
     ) {
         $this->intIdEspecial = $id;
         $this->strMatr = $matr;
@@ -244,6 +254,8 @@ class EspecialesModel extends Mysql
         $this->intFond = $fond;
         $this->strUsos = $usos;
         $this->strInst = $inst;
+        $this->intDig = $dig;
+        $this->strEfec = $efec;
 
         $sql = "SELECT * FROM especiales WHERE matr_especial = '{$this->strMatr}' AND id_especial != $this->intIdEspecial";
         $request = $this->select_all($sql);
@@ -255,7 +267,8 @@ class EspecialesModel extends Mysql
                 habi_especial=?, frec_especial=?, defr_especial=?, alma_especial=?, tial_especial=?, 
                 deal_especial=?, larg_especial=?, anch_especial=?, alto_especial=?, punt_especial=?, 
                 vivi_especial=?, devi_especial=?, tama_especial=?, cuar_especial=?, bani_especial=?, 
-                zona_especial=?, fren_especial=?, fond_especial=?, usos_especial=?, inst_especial=? 
+                zona_especial=?, fren_especial=?, fond_especial=?, usos_especial=?, inst_especial=?, 
+                dig_especial=?, efect_especial=? 
                 WHERE id_especial = $this->intIdEspecial";
 
             $arrData = array(
@@ -288,7 +301,9 @@ class EspecialesModel extends Mysql
                 $this->intFren,
                 $this->intFond,
                 $this->strUsos,
-                $this->strInst
+                $this->strInst,
+                $this->intDig,
+                $this->strEfec
             );
             $request = $this->update($sql, $arrData);
         } else {

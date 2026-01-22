@@ -64,11 +64,11 @@ class Especiales extends Controllers
                 $strTele = strClean($_POST['txtTele']);
                 $strEmail = strClean($_POST['txtEmail']);
                 $strHabi = strClean($_POST['txtHabi']);
-                $strFrec = strClean($_POST['txtFrec']);
-                $strDefr = strClean($_POST['txtDefr']);
-                $strAlma = strClean($_POST['txtAlma']);
-                $strTial = strClean($_POST['txtTial']);
-                $strDeal = strClean($_POST['txtDeal']);
+                $strFrec = isset($_POST['txtFrec']) ? strClean($_POST['txtFrec']) : '';
+                $strDefr = isset($_POST['txtDefr']) ? strClean($_POST['txtDefr']) : '';
+                $strAlma = isset($_POST['txtAlma']) ? strClean($_POST['txtAlma']) : '';
+                $strTial = isset($_POST['txtTial']) ? strClean($_POST['txtTial']) : '';
+                $strDeal = isset($_POST['txtDeal']) ? strClean($_POST['txtDeal']) : '';
 
                 // Fields modified to support decimals (string format for SQL)
                 $strLarg = $_POST['txtLarg'];
@@ -76,17 +76,20 @@ class Especiales extends Controllers
                 $strAlto = $_POST['txtAlto'];
                 $strTama = $_POST['txtTama'];
 
-                $intPunt = intval($_POST['txtPunt']);
-                $strVivi = strClean($_POST['txtVivi']);
-                $strDevi = strClean($_POST['txtDevi']);
+                $intPunt = isset($_POST['txtPunt']) ? intval($_POST['txtPunt']) : 0;
+                $strVivi = isset($_POST['txtVivi']) ? strClean($_POST['txtVivi']) : '';
+                $strDevi = isset($_POST['txtDevi']) ? strClean($_POST['txtDevi']) : '';
 
                 $strCuar = strClean($_POST['txtCuar']);
                 $strBani = strClean($_POST['txtBani']);
-                $strZona = strClean($_POST['txtZona']);
-                $intFren = intval($_POST['txtFren']);
-                $intFond = intval($_POST['txtFond']);
+                $strZona = isset($_POST['txtZona']) ? strClean($_POST['txtZona']) : '';
+                $intFren = isset($_POST['txtFren']) ? intval($_POST['txtFren']) : 0;
+                $intFond = isset($_POST['txtFond']) ? intval($_POST['txtFond']) : 0;
                 $strUsos = strClean($_POST['txtUsos']);
                 $strInst = strClean($_POST['txtInst']);
+
+                $intDig = 1;
+                $strEfec = strClean($_POST['txtEfec']);
 
                 if ($idEspecial == 0) {
                     $request_user = $this->model->insertEspecial(
@@ -119,7 +122,9 @@ class Especiales extends Controllers
                         $intFren,
                         $intFond,
                         $strUsos,
-                        $strInst
+                        $strInst,
+                        $intDig,
+                        $strEfec
                     );
                     $option = 1;
                 } else {
@@ -154,7 +159,9 @@ class Especiales extends Controllers
                         $intFren,
                         $intFond,
                         $strUsos,
-                        $strInst
+                        $strInst,
+                        $intDig,
+                        $strEfec
                     );
                     $option = 2;
                 }

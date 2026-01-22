@@ -91,7 +91,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (objData?.status) {
                 $('#modalFormEspecial').modal("hide");
                 formEspecial.reset();
-                swal("Especiales", objData.msg, "success");
+                swal({
+                    title: "Especiales",
+                    text: objData.msg,
+                    type: "success",
+                    confirmButtonColor: "#28a745"
+                });
                 tableEspeciales.ajax.reload();
             } else {
                 swal("Error", objData?.msg || "Error desconocido", "error");
@@ -107,6 +112,7 @@ function openModal() {
     document.querySelector('#btnText').innerHTML = "Guardar";
     document.querySelector('#titleModal').innerHTML = "Nuevo Registro Especial";
     document.querySelector("#formEspecial").reset();
+    document.querySelector("#txtEfec").value = ""; // Reset new field
     $('#modalFormEspecial').modal('show');
 }
 
@@ -150,6 +156,7 @@ async function fntEditEspecial(idEspecial) {
         document.querySelector("#txtFond").value = objData.data.fond_especial;
         document.querySelector("#txtUsos").value = objData.data.usos_especial;
         document.querySelector("#txtInst").value = objData.data.inst_especial;
+        document.querySelector("#txtEfec").value = objData.data.efect_especial;
 
         fntFrecuencia(objData.data.frec_especial);
         fntTipoAlmacenamiento(objData.data.tial_especial);
@@ -232,11 +239,31 @@ function fntDelEspecial(idEspecial) {
             const objData = await fetchData(BASE_URL_API + '/Especiales/delEspecial', 'POST', formData);
 
             if (objData?.status) {
-                swal("Eliminado!", objData.msg, "success");
+                swal({
+                    title: "Eliminado!",
+                    text: objData.msg,
+                    type: "success",
+                    confirmButtonColor: "#28a745"
+                });
                 tableEspeciales.ajax.reload();
             } else {
                 swal("Atención!", objData?.msg || "Error al eliminar", "error");
             }
         }
     });
+}
+
+function fntEfectividad(value) {
+    if (value != "" && value != "EFECTIVA") {
+        let strMatr = document.querySelector('#txtMatr').value;
+        let strSusc = document.querySelector('#txtSusc').value;
+        if (strMatr == '' || strSusc == '') {
+            swal("Atención", "Matrícula y Suscriptor son obligatorios.", "error");
+            document.querySelector("#txtEfec").value = "";
+            return;
+        }
+        // Trigger existing submit handler
+        let btnGuardar = document.querySelector("#btnActionForm");
+        btnGuardar.click();
+    }
 }

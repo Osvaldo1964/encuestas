@@ -144,6 +144,18 @@
                                     <input type="text" class="form-control" id="txtLong" name="txtLong">
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="txtEfec">Efectividad</label>
+                                    <select class="form-control" id="txtEfec" name="txtEfec" onchange="fntEfectividad(this.value)">
+                                        <option value="">Seleccione...</option>
+                                        <option value="EFECTIVA">EFECTIVA</option>
+                                        <option value="SIN INFORMACION">SIN INFORMACION</option>
+                                        <option value="PREDIO DESOCUPADO">PREDIO DESOCUPADO</option>
+                                        <option value="PREDIO CERRADO">PREDIO CERRADO</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
