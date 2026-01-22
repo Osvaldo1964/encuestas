@@ -49,6 +49,8 @@
                                     <th>Fondo</th>
                                     <th>Usos</th>
                                     <th>Instalar</th>
+                                    <th>Dig.</th>
+                                    <th>Efectividad</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>

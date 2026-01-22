@@ -1,11 +1,12 @@
 # Estado del Proyecto - Sistema de Encuestas
 
-## Última Actualización: 07 de Enero de 2026
+## Última Actualización: 21 de Enero de 2026
 
 ### 1. Diseño y Estética (UI/UX)
 **Estado:** Actualizado a Paleta Viridian (`#40826D`).
 - **Login:** Meta etiqueta `theme-color` y estados de botones corregidos.
 - **Global:** Versión de CSS actualizada para refrescar caché.
+- **Optimización Local:** Librerías de exportación (JSZip, PDFMake, DataTables Buttons) descargadas e integradas localmente para eliminar advertencias de "Tracking Prevention" y dependencia de CDNs.
 
 ### 2. Landing Page (Sitio Web Principal)
 **Estado:** ¡Creado! (`index.php` en raíz).
@@ -48,16 +49,20 @@
   - Exportación a CSV e Impresión de gráficos.
 
 ### 7. Módulo Especiales (`Especiales`)
-**Estado:** ¡Completado y Refinado! (Enero 2026)
-- **Funcionalidad:**
+**Estado:** ¡Versión Final Avanzada! (Enero 2026)
+- **Logica de Negocio (Efectividad):**
+  - Nuevo campo `efect_especial` para clasificar resultados (EFECTIVA, PREDIO CERRADO, etc.).
+  - Flag de control `dig_especial` para marcar registros gestionados.
+  - **Flujo de Guardado Rápido:** Si la encuesta NO es "EFECTIVA", permite guardar inmediatamente sin validar el resto del formulario.
+- **Reportes (Excel):**
+  - **Filtro Inteligente:** La exportación a Excel solo incluye registros ya gestionados (`dig_especial = 1`).
+  - Inclusión de columna "Efectividad" en el reporte para análisis de cobertura.
+- **Funcionalidad Base:**
   - Gestión completa (CRUD) de la tabla `especiales`.
-  - **Formulario Inteligente:** 
-    - Todos los campos de texto libre convertidos a Selects controlados (Habitantes, Usos, Baños, etc.).
-    - Lógica JS para campos dependientes ("Otro", "Zonas Verdes -> Frente/Fondo").
-  - **UI/UX:** Diseño "Compacto" (font 0.75rem), Modal con scroll interno y botones centrados.
-  - **Base de Datos:** Optimización de tipos de datos (`INT` -> `VARCHAR`) y limpieza de inconsistencias (`RESID--`).
-  - **Soporte Decimal:** Actualizados campos de dimensiones (Largo, Ancho, Alto, Tamaño) a `DECIMAL(8,2)` para permitir precisión.
+  - **Formulario Inteligente:** Selects controlados y lógica para campos dependientes.
+  - **Soporte Decimal:** Campos de dimensiones precisos.
   - **Seguridad:** Integrado con sistema de permisos (ID Módulo: 9).
+  - **UX:** Feedback visual mejorado (Botón OK verde en éxito).
 
 ## Tareas Pendientes / Próximos Pasos (Enero 2026)
 1. **Validación PQR:** Asegurar que el endpoint `/Contacto/enviar` en la API esté operativo.
