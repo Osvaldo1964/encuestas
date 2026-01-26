@@ -1,0 +1,29 @@
+commit f35c3e91d4db76243106c5b3d0b99165860811c8
+Author: Osvaldo1964 <140724795+Osvaldo1964@users.noreply.github.com>
+Date:   Fri Jan 16 13:28:50 2026 -0500
+
+    adjust_especiales_001
+
+commit c1e46f90fd661c6ac3f2cd519490acce8165e72a
+Author: Osvaldo1964 <140724795+Osvaldo1964@users.noreply.github.com>
+Date:   Wed Jan 7 15:03:39 2026 -0500
+
+    adjust_decimals
+
+commit d76bdc370826b1ce456b2399884c9230096d4af5
+Author: Osvaldo1964 <140724795+Osvaldo1964@users.noreply.github.com>
+Date:   Wed Jan 7 14:16:16 2026 -0500
+
+    adjust_especiales_003
+
+commit b39c2e988fc61adc744e00f8cd09027434e6bd67
+Author: Osvaldo1964 <140724795+Osvaldo1964@users.noreply.github.com>
+Date:   Wed Jan 7 00:25:03 2026 -0500
+
+    adjust_estado_proy_001
+
+commit d9d925d159fdd1db2ed67a443239f983eb29fa7e
+Author: Osvaldo1964 <140724795+Osvaldo1964@users.noreply.github.com>
+Date:   Wed Jan 7 00:21:28 2026 -0500
+
+    especiales_001

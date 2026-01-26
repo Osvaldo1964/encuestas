@@ -240,3 +240,42 @@ function fntDelEspecial(idEspecial) {
         }
     });
 }
+
+function openModalCSV() {
+    $('#modalFormEspecialCSV').modal('show');
+    document.querySelector("#formEspecialCSV").reset();
+}
+
+if (document.querySelector("#formEspecialCSV")) {
+    const formEspecialCSV = document.querySelector("#formEspecialCSV");
+    formEspecialCSV.onsubmit = async function (e) {
+        e.preventDefault();
+
+        let fileInput = document.querySelector('#fileCSV');
+        if (fileInput.files.length === 0) {
+            swal("Atención", "Debe seleccionar un archivo para subir.", "warning");
+            return;
+        }
+
+        swal({
+            title: "Cargando...",
+            text: "Procesando archivo CSV, por favor espere.",
+            type: "info",
+            showConfirmButton: false,
+            closeOnConfirm: false
+        });
+
+        const formData = new FormData(formEspecialCSV);
+        // Usamos base_url en lugar de BASE_URL_API para apuntar al controlador de la App, no a la API
+        const objData = await fetchData(base_url + 'Especiales/setEspecialesCSV', 'POST', formData);
+
+        if (objData?.status) {
+            $('#modalFormEspecialCSV').modal("hide");
+            formEspecialCSV.reset();
+            swal("Proceso Completado", objData.msg, "success");
+            tableEspeciales.ajax.reload();
+        } else {
+            swal("Error", objData?.msg || "Error al procesar el archivo", "error");
+        }
+    };
+}

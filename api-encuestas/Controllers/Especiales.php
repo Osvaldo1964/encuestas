@@ -188,6 +188,127 @@ class Especiales extends Controllers
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
+    }
+
+    public function setEspecialesCSV()
+    {
+        if ($_POST) {
+            if (!empty($_FILES['fileCSV']['name'])) {
+                $filename = $_FILES['fileCSV']['tmp_name'];
+                $fileInfo = pathinfo($_FILES['fileCSV']['name']);
+
+                if (strtolower($fileInfo['extension']) != 'csv') {
+                    $arrResponse = array('status' => false, 'msg' => 'Formato de archivo inválido. Se espera un CSV.');
+                    echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
+                $handle = fopen($filename, "r");
+                if ($handle) {
+                    $row = 0;
+                    $inserted = 0;
+                    $skipped = 0;
+
+                    // Leer la primera línea (encabecados) y descartarla
+                    $headers = fgetcsv($handle, 10000, ";");
+
+                    while (($data = fgetcsv($handle, 10000, ";")) !== FALSE) {
+                        $row++;
+                        // Validar número de columnas (ajustar según tu CSV y Modelo)
+                        // El modelo espera 30 parámetros
+
+                        // Mapeo del CSV al Modelo
+                        // Índices basados en el CSV provisto:
+                        // 0: id, 1: matr, 2: susc, ... 30: inst, 31: estado
+
+                        // Verificar si existe la fila
+                        if (count($data) < 30) {
+                            $skipped++;
+                            continue;
+                        }
+
+                        // Ignoramos index 0 (id_especial)
+                        $matr = $data[1] ?? '';
+                        $susc = $data[2] ?? '';
+                        $medi = $data[3] ?? '';
+                        $barr = $data[4] ?? '';
+                        $dire = $data[5] ?? '';
+                        $lati = $data[6] ?? '';
+                        $long = $data[7] ?? '';
+                        $estr = $data[8] ?? '';
+                        $tele = $data[9] ?? '';
+                        $email = $data[10] ?? '';
+                        $habi = $data[11] ?? '';
+                        $frec = $data[12] ?? '';
+                        $defr = $data[13] ?? '';
+                        $alma = $data[14] ?? '';
+                        $tial = $data[15] ?? '';
+                        $deal = $data[16] ?? '';
+                        $larg = $data[17] ?? '';
+                        $anch = $data[18] ?? '';
+                        $alto = $data[19] ?? '';
+                        $punt = intval($data[20] ?? 0);
+                        $vivi = $data[21] ?? '';
+                        $devi = $data[22] ?? '';
+                        $tama = $data[23] ?? '';
+                        $cuar = $data[24] ?? '';
+                        $bani = $data[25] ?? '';
+                        $zona = $data[26] ?? '';
+                        $fren = intval($data[27] ?? 0);
+                        $fond = intval($data[28] ?? 0);
+                        $usos = $data[29] ?? '';
+                        $inst = $data[30] ?? '';
+
+                        $request = $this->model->insertEspecial(
+                            $matr,
+                            $susc,
+                            $medi,
+                            $barr,
+                            $dire,
+                            $lati,
+                            $long,
+                            $estr,
+                            $tele,
+                            $email,
+                            $habi,
+                            $frec,
+                            $defr,
+                            $alma,
+                            $tial,
+                            $deal,
+                            $larg,
+                            $anch,
+                            $alto,
+                            $punt,
+                            $vivi,
+                            $devi,
+                            $tama,
+                            $cuar,
+                            $bani,
+                            $zona,
+                            $fren,
+                            $fond,
+                            $usos,
+                            $inst
+                        );
+
+                        if ($request > 0) {
+                            $inserted++;
+                        } else {
+                            $skipped++;
+                        }
+                    }
+                    fclose($handle);
+
+                    $arrResponse = array('status' => true, 'msg' => "Proceso terminado. Insertados: $inserted. Omitidos (Duplicados/Inválidos): $skipped.");
+                } else {
+                    $arrResponse = array('status' => false, 'msg' => 'No se pudo abrir el archivo.');
+                }
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'No se ha subido ningún archivo.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }

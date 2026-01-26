@@ -9,6 +9,8 @@
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item"><a href="<?= base_url(); ?>/especiales"><?= $data['page_title'] ?></a></li>
         </ul>
+        <button class="btn btn-primary" type="button" onclick="openModalCSV();" style="margin-left: 10px;"><i
+                class="fas fa-file-upload"></i> Cargar CSV</button>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -324,6 +326,40 @@
                         class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
             </div>
             </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal Carga CSV -->
+<div class="modal fade" id="modalFormEspecialCSV" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header headerRegister">
+                <h5 class="modal-title" id="titleModalCSV">Cargar Archivo CSV</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formEspecialCSV" name="formEspecialCSV" class="form-horizontal">
+                    <p class="text-primary">Asegúrese de que el archivo tenga el formato correcto (.csv separado por
+                        punto y coma).</p>
+                    <div class="form-group">
+                        <label class="control-label">Seleccionar Archivo</label>
+                        <input class="form-control-file" id="fileCSV" name="fileCSV" type="file" accept=".csv" required>
+                    </div>
+                    <div class="tile-footer text-center p-3">
+                        <button id="btnActionFormCSV" class="btn btn-primary" type="submit">
+                            <i class="fa fa-fw fa-lg fa-check-circle"></i>
+                            <span id="btnTextCSV">Subir</span>
+                        </button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">
+                            <i class="fa fa-fw fa-lg fa-times-circle"></i> Cerrar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

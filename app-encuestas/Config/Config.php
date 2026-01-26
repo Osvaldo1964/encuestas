@@ -26,3 +26,8 @@ const SPM = ","; //Separador millar
 
 //Simbolo de moneda
 const SMONEY = "$";
+
+// Activar reporte de errores (Solo para desarrollo)
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ALL);
