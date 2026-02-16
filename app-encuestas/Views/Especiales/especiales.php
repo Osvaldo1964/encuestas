@@ -171,31 +171,15 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="txtHabi">Habitantes</label>
-                                    <select class="form-control" id="txtHabi" name="txtHabi">
-                                        <option value="">Seleccione...</option>
-                                        <option value="1">1</option>
-                                        <option value="2 A 3">2 A 3</option>
-                                        <option value="4 A 5">4 A 5</option>
-                                        <option value="6">6</option>
-                                        <option value="MAS DE 6">MAS DE 6</option>
-                                    </select>
+                                    <input type="number" class="form-control" id="txtHabi" name="txtHabi">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="txtFrec">Frecuencia</label>
-                                    <select class="form-control" id="txtFrec" name="txtFrec"
-                                        onchange="fntFrecuencia(this.value)">
-                                        <option value="">Seleccione...</option>
-                                        <option value="DIARIA">DIARIA</option>
-                                        <option value="2 DIAS A LA SEMANA">2 DIAS A LA SEMANA</option>
-                                        <option value="UNA VEZ A LA SEMANA">UNA VEZ A LA SEMANA</option>
-                                        <option value="QUINCENAL">QUINCENAL</option>
-                                        <option value="MENSUAL">MENSUAL</option>
-                                        <option value="OTRO">OTRO</option>
-                                    </select>
+                                    <input type="number" class="form-control" id="txtFrec" name="txtFrec">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="txtDefr">Cuál (Otro)</label>
-                                    <input type="text" class="form-control" id="txtDefr" name="txtDefr" disabled>
+                                    <label for="txtDefr">Horas Servicio</label>
+                                    <input type="number" class="form-control" id="txtDefr" name="txtDefr">
                                 </div>
                             </div>
                             <div class="form-row">

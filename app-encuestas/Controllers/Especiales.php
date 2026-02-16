@@ -71,9 +71,9 @@ class Especiales extends Controllers
                             $estr = $data[8] ?? '';
                             $tele = $data[9] ?? '';
                             $email = $data[10] ?? '';
-                            $habi = $data[11] ?? '';
-                            $frec = $data[12] ?? '';
-                            $defr = $data[13] ?? '';
+                            $habi = intval($data[11] ?? 0);
+                            $frec = intval($data[12] ?? 0);
+                            $defr = intval($data[13] ?? 0);
                             $alma = $data[14] ?? '';
                             $tial = $data[15] ?? '';
                             $deal = $data[16] ?? '';
