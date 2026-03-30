@@ -13,9 +13,9 @@ class EspecialesModel extends Mysql
     private $strEstr;
     private $strTele;
     private $strEmail;
-    private $strHabi;
-    private $strFrec;
-    private $strDefr;
+    private $intHabi;
+    private $intFrec;
+    private $intDefr;
     private $strAlma;
     private $strTial;
     private $strDeal;
@@ -69,9 +69,9 @@ class EspecialesModel extends Mysql
         string $estr,
         string $tele,
         string $email,
-        string $habi,
-        string $frec,
-        string $defr,
+        int $habi,
+        int $frec,
+        int $defr,
         string $alma,
         string $tial,
         string $deal,
@@ -100,9 +100,9 @@ class EspecialesModel extends Mysql
         $this->strEstr = $estr;
         $this->strTele = $tele;
         $this->strEmail = $email;
-        $this->strHabi = $habi;
-        $this->strFrec = $frec;
-        $this->strDefr = $defr;
+        $this->intHabi = $habi;
+        $this->intFrec = $frec;
+        $this->intDefr = $defr;
         $this->strAlma = $alma;
         $this->strTial = $tial;
         $this->strDeal = $deal;
@@ -149,9 +149,9 @@ class EspecialesModel extends Mysql
                 $this->strEstr,
                 $this->strTele,
                 $this->strEmail,
-                $this->strHabi,
-                $this->strFrec,
-                $this->strDefr,
+                $this->intHabi,
+                $this->intFrec,
+                $this->intDefr,
                 $this->strAlma,
                 $this->strTial,
                 $this->strDeal,
@@ -191,9 +191,9 @@ class EspecialesModel extends Mysql
         string $estr,
         string $tele,
         string $email,
-        string $habi,
-        string $frec,
-        string $defr,
+        int $habi,
+        int $frec,
+        int $defr,
         string $alma,
         string $tial,
         string $deal,
@@ -223,9 +223,9 @@ class EspecialesModel extends Mysql
         $this->strEstr = $estr;
         $this->strTele = $tele;
         $this->strEmail = $email;
-        $this->strHabi = $habi;
-        $this->strFrec = $frec;
-        $this->strDefr = $defr;
+        $this->intHabi = $habi;
+        $this->intFrec = $frec;
+        $this->intDefr = $defr;
         $this->strAlma = $alma;
         $this->strTial = $tial;
         $this->strDeal = $deal;
@@ -269,9 +269,9 @@ class EspecialesModel extends Mysql
                 $this->strEstr,
                 $this->strTele,
                 $this->strEmail,
-                $this->strHabi,
-                $this->strFrec,
-                $this->strDefr,
+                $this->intHabi,
+                $this->intFrec,
+                $this->intDefr,
                 $this->strAlma,
                 $this->strTial,
                 $this->strDeal,

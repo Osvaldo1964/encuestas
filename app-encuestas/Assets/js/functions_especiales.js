@@ -163,7 +163,7 @@ async function fntEditEspecial(idEspecial) {
         document.querySelector("#txtInst").value = objData.data.inst_especial;
         document.querySelector("#txtEfec").value = objData.data.efect_especial;
 
-        fntFrecuencia(objData.data.frec_especial);
+        // fntFrecuencia(objData.data.frec_especial);
         fntTipoAlmacenamiento(objData.data.tial_especial);
         fntVivienda(objData.data.vivi_especial);
         fntZonasVerdes(objData.data.zona_especial);
@@ -173,17 +173,7 @@ async function fntEditEspecial(idEspecial) {
     }
 }
 
-function fntFrecuencia(value) {
-    let txtDefr = document.querySelector("#txtDefr");
-    if (value == "OTRO") {
-        txtDefr.disabled = false;
-        txtDefr.required = true;
-    } else {
-        txtDefr.disabled = true;
-        txtDefr.required = false;
-        txtDefr.value = "";
-    }
-}
+
 
 function fntTipoAlmacenamiento(value) {
     let txtDeal = document.querySelector("#txtDeal");

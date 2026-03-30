@@ -61,6 +61,8 @@
   - Gestión completa (CRUD) de la tabla `especiales`.
   - **Formulario Inteligente:** Selects controlados y lógica para campos dependientes.
   - **Soporte Decimal:** Campos de dimensiones precisos.
+  - **Optimización de Datos:** Conversión de campos `Habitantes`, `Frecuencia` y `Detalle Frecuencia` a tipos enteros.
+  - **UI:** Actualización de etiqueta "Cuál (Otro)" a "Horas Servicio".
   - **Seguridad:** Integrado con sistema de permisos (ID Módulo: 9).
   - **UX:** Feedback visual mejorado (Botón OK verde en éxito).
 
