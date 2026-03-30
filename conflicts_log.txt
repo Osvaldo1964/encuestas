@@ -1,0 +1,32 @@
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+	modified:   PROJECT_STATUS.md
+	modified:   api-encuestas/Controllers/Especiales.php
+	modified:   api-encuestas/Models/EspecialesModel.php
+	deleted:    api-encuestas/db_sitemacreditos.sql
+	new file:   app-encuestas/Assets/js/plugins/buttons.html5.min.js
+	new file:   app-encuestas/Assets/js/plugins/buttons.print.min.js
+	new file:   app-encuestas/Assets/js/plugins/dataTables.buttons.min.js
+	new file:   app-encuestas/Assets/js/plugins/jszip.min.js
+	new file:   app-encuestas/Assets/js/plugins/pdfmake.min.js
+	new file:   app-encuestas/Assets/js/plugins/vfs_fonts.js
+	modified:   app-encuestas/Views/Especiales/especiales.php
+	modified:   app-encuestas/Views/Template/footer_admin.php
+	new file:   arc_base (1).xlsx
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both modified:   app-encuestas/Assets/js/functions_especiales.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	conflicts_log.txt
+
