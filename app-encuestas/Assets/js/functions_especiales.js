@@ -1,4 +1,5 @@
 let tableEspeciales;
+let exportFilter = 'realizadas';
 
 document.addEventListener('DOMContentLoaded', function () {
     tableEspeciales = $('#tableEspeciales').DataTable({
@@ -49,13 +50,22 @@ document.addEventListener('DOMContentLoaded', function () {
         "dom": 'Bfrtip',
         "buttons": [
             {
-                "extend": "excelHtml5",
                 "text": "<i class='fas fa-file-excel'></i> Excel",
                 "titleAttr": "Exportar a Excel",
                 "className": "btn btn-success",
+                "action": function (e, dt, node, config) {
+                    $('#modalFormExportarExcel').modal('show');
+                }
+            },
+            {
+                "extend": "excelHtml5",
+                "className": "d-none btn-export-hidden",
                 "exportOptions": {
                     "columns": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
                     "rows": function (idx, data, node) {
+                        if (exportFilter === 'todas') {
+                            return true;
+                        }
                         return data.dig_especial == 1;
                     }
                 }
@@ -107,6 +117,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 swal("Error", objData?.msg || "Error desconocido", "error");
             }
         };
+    }
+
+    if (document.querySelector("#btnExportarTodo")) {
+        document.querySelector("#btnExportarTodo").addEventListener("click", function() {
+            exportFilter = 'todas';
+            document.querySelector('.btn-export-hidden').click();
+            $('#modalFormExportarExcel').modal('hide');
+        });
+    }
+
+    if (document.querySelector("#btnExportarRealizadas")) {
+        document.querySelector("#btnExportarRealizadas").addEventListener("click", function() {
+            exportFilter = 'realizadas';
+            document.querySelector('.btn-export-hidden').click();
+            $('#modalFormExportarExcel').modal('hide');
+        });
     }
 });
 

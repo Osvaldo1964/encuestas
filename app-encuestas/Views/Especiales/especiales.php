@@ -329,6 +329,31 @@
 </div>
 </div>
 
+<!-- Modal Exportar Excel -->
+<div class="modal fade" id="modalFormExportarExcel" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header headerRegister" style="background-color: #28a745; color: white;">
+                <h5 class="modal-title" id="titleModalExcel">Exportar Encuestas a Excel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center mt-3 mb-4">
+                <p class="text-primary mb-4" style="font-size: 1.1rem;">¿Qué encuestas desea exportar?</p>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-info mr-3" type="button" id="btnExportarTodo">
+                        <i class="fas fa-file-export"></i> Todo el archivo
+                    </button>
+                    <button class="btn btn-success" type="button" id="btnExportarRealizadas">
+                        <i class="fas fa-check-circle"></i> Solo las realizadas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Carga CSV -->
 <div class="modal fade" id="modalFormEspecialCSV" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
